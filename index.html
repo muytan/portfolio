@@ -1,31 +1,31 @@
-<!-- Brands (white strip, consistent tiles, grayscale logos, text tooltip) -->
+<!-- Brands (with AppNation + TikTok larger) -->
 <section id="clients" aria-labelledby="clients-heading">
   <div class="section-card">
     <h2 id="clients-heading" data-en="Brands I’ve Worked With" data-tr="Çalıştığım Markalar">Brands I’ve Worked With</h2>
     <div class="clients-strip">
       <div class="clients-logos" aria-label="Brand logos">
 
-        <!-- 1) TikTok Live (white bg) -->
-        <div class="logo-tile bg-white" data-brand="TikTok Live">
+        <!-- 1) TikTok Live (slightly bigger, white bg) -->
+        <div class="logo-tile bg-white big" data-brand="TikTok Live">
           <img src="assets/logos/ttlogo.png" alt="TikTok Live logo">
         </div>
 
-        <!-- 2) AppNation (no bg, image as-is) -->
-        <div class="logo-tile bg-none" data-brand="AppNation">
+        <!-- 2) AppNation (much bigger, no bg) -->
+        <div class="logo-tile bg-none wide" data-brand="AppNation">
           <img src="assets/logos/anlogo.png" alt="AppNation logo">
         </div>
 
-        <!-- 3) Fotorama (black bg) -->
+        <!-- 3) Fotorama (standard, black bg) -->
         <div class="logo-tile bg-black" data-brand="Fotorama">
           <img src="assets/logos/ftrlogo.jpeg" alt="Fotorama logo">
         </div>
 
-        <!-- 4) SpeakWell (white bg) -->
+        <!-- 4) SpeakWell (standard, white bg) -->
         <div class="logo-tile bg-white" data-brand="SpeakWell">
           <img src="assets/logos/spwlogo.jpg" alt="SpeakWell logo">
         </div>
 
-        <!-- 5) Genie AI (white bg) -->
+        <!-- 5) Genie AI (standard, white bg) -->
         <div class="logo-tile bg-white" data-brand="Genie AI">
           <img src="assets/logos/gnlogo.png" alt="Genie AI logo">
         </div>
@@ -36,7 +36,6 @@
 </section>
 
 <style>
-  /* White strip like your reference */
   .clients-strip{
     background:#fff; border:1px solid var(--border-color); border-radius:var(--radius-lg);
     padding:24px; box-shadow:var(--shadow-sm);
@@ -45,7 +44,7 @@
     display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:40px;
   }
 
-  /* Equal tiles for consistent look */
+  /* Default tile */
   .logo-tile{
     position:relative;
     width:140px; height:90px;
@@ -55,32 +54,37 @@
   }
   .logo-tile.bg-white{ background:#ffffff; }
   .logo-tile.bg-black{ background:#111111; }
-  .logo-tile.bg-none{ background:transparent; } /* AppNation: no background */
+  .logo-tile.bg-none{ background:transparent; }
 
-  /* Logo rendering: grayscale with a hint of saturation, no color-on-hover */
+  /* Larger sizes */
+  .logo-tile.big { width:160px; height:100px; }       /* TikTok Live */
+  .logo-tile.wide { width:220px; height:100px; }      /* AppNation wide logo */
+
+  /* Logo style */
   .logo-tile img{
-    max-height:56px; max-width:120px; object-fit:contain;
+    max-height:56px; max-width:90%;
+    object-fit:contain;
     filter: grayscale(90%) saturate(0.25) brightness(1.05);
     opacity:0.95;
   }
-
-  /* Subtle lift on hover (no color change) */
   .logo-tile:hover{ transform: translateY(-2px); }
 
-  /* Brand name tooltip (uses same font as page) */
+  /* Tooltip */
   .logo-tile::after{
     content: attr(data-brand);
     position:absolute; bottom:-22px; left:50%; transform:translateX(-50%);
-    font: inherit; font-size:.8rem; line-height:1;
+    font: inherit; font-size:.8rem;
     color:var(--text-secondary);
     opacity:0; transition:opacity .2s ease;
-    white-space:nowrap; pointer-events:none;
+    white-space:nowrap;
   }
   .logo-tile:hover::after{ opacity:1; }
 
   @media (max-width:640px){
     .clients-logos{ gap:22px; }
     .logo-tile{ width:120px; height:80px; }
-    .logo-tile img{ max-height:48px; max-width:100px; }
+    .logo-tile.big{ width:140px; height:90px; }
+    .logo-tile.wide{ width:180px; height:90px; }
+    .logo-tile img{ max-height:48px; }
   }
 </style>
