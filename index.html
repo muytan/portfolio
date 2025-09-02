@@ -1,71 +1,86 @@
-<!-- Brands (with tile backgrounds + hover tooltips) -->
+<!-- Brands (white strip, consistent tiles, grayscale logos, text tooltip) -->
 <section id="clients" aria-labelledby="clients-heading">
   <div class="section-card">
     <h2 id="clients-heading" data-en="Brands I’ve Worked With" data-tr="Çalıştığım Markalar">Brands I’ve Worked With</h2>
     <div class="clients-strip">
       <div class="clients-logos" aria-label="Brand logos">
-        
-        <div class="logo-tile" data-brand="Fotorama">
-          <img src="assets/logos/ftrlogo.jpeg" alt="Fotorama logo">
-        </div>
-        
-        <div class="logo-tile" data-brand="TikTok Live">
+
+        <!-- 1) TikTok Live (white bg) -->
+        <div class="logo-tile bg-white" data-brand="TikTok Live">
           <img src="assets/logos/ttlogo.png" alt="TikTok Live logo">
         </div>
-        
-        <div class="logo-tile" data-brand="SpeakWell">
-          <img src="assets/logos/spwlogo.jpg" alt="SpeakWell logo">
-        </div>
-        
-        <div class="logo-tile" data-brand="Genie AI">
-          <img src="assets/logos/gnlogo.png" alt="Genie AI logo">
-        </div>
-        
-        <div class="logo-tile" data-brand="AppNation">
+
+        <!-- 2) AppNation (no bg, image as-is) -->
+        <div class="logo-tile bg-none" data-brand="AppNation">
           <img src="assets/logos/anlogo.png" alt="AppNation logo">
         </div>
-      
+
+        <!-- 3) Fotorama (black bg) -->
+        <div class="logo-tile bg-black" data-brand="Fotorama">
+          <img src="assets/logos/ftrlogo.jpeg" alt="Fotorama logo">
+        </div>
+
+        <!-- 4) SpeakWell (white bg) -->
+        <div class="logo-tile bg-white" data-brand="SpeakWell">
+          <img src="assets/logos/spwlogo.jpg" alt="SpeakWell logo">
+        </div>
+
+        <!-- 5) Genie AI (white bg) -->
+        <div class="logo-tile bg-white" data-brand="Genie AI">
+          <img src="assets/logos/gnlogo.png" alt="Genie AI logo">
+        </div>
+
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .clients-strip {
+  /* White strip like your reference */
+  .clients-strip{
     background:#fff; border:1px solid var(--border-color); border-radius:var(--radius-lg);
     padding:24px; box-shadow:var(--shadow-sm);
   }
-  .clients-logos {
+  .clients-logos{
     display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:40px;
   }
-  .logo-tile {
+
+  /* Equal tiles for consistent look */
+  .logo-tile{
     position:relative;
-    width:120px; height:80px;
-    background:#f5f5f5;
+    width:140px; height:90px;
     border-radius:12px;
     display:flex; justify-content:center; align-items:center;
-    transition:all .25s ease;
+    transition:transform .2s ease;
   }
-  .logo-tile img {
-    max-height:50px; max-width:100px;
-    object-fit:contain;
-    filter:grayscale(100%) brightness(1.05);
-    opacity:.9;
-    transition:all .25s ease;
+  .logo-tile.bg-white{ background:#ffffff; }
+  .logo-tile.bg-black{ background:#111111; }
+  .logo-tile.bg-none{ background:transparent; } /* AppNation: no background */
+
+  /* Logo rendering: grayscale with a hint of saturation, no color-on-hover */
+  .logo-tile img{
+    max-height:56px; max-width:120px; object-fit:contain;
+    filter: grayscale(90%) saturate(0.25) brightness(1.05);
+    opacity:0.95;
   }
-  .logo-tile:hover img {
-    filter:grayscale(0%);
-    opacity:1;
-  }
-  /* Tooltip for brand name */
-  .logo-tile::after {
+
+  /* Subtle lift on hover (no color change) */
+  .logo-tile:hover{ transform: translateY(-2px); }
+
+  /* Brand name tooltip (uses same font as page) */
+  .logo-tile::after{
     content: attr(data-brand);
-    position:absolute;
-    bottom:-24px; left:50%; transform:translateX(-50%);
-    font-size:.8rem;
+    position:absolute; bottom:-22px; left:50%; transform:translateX(-50%);
+    font: inherit; font-size:.8rem; line-height:1;
     color:var(--text-secondary);
-    opacity:0; transition:opacity .25s ease;
-    white-space:nowrap;
+    opacity:0; transition:opacity .2s ease;
+    white-space:nowrap; pointer-events:none;
   }
-  .logo-tile:hover::after { opacity:1; }
+  .logo-tile:hover::after{ opacity:1; }
+
+  @media (max-width:640px){
+    .clients-logos{ gap:22px; }
+    .logo-tile{ width:120px; height:80px; }
+    .logo-tile img{ max-height:48px; max-width:100px; }
+  }
 </style>
