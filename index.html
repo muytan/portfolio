@@ -48,7 +48,6 @@
       transform:translateY(-2px) scale(1.02);
     }
     .profile-pic:hover img{
-      /* subtle blue accent without making the image grayscale */
       filter:hue-rotate(165deg) saturate(1.1) brightness(1.03);
       transform:scale(1.02);
     }
@@ -132,7 +131,7 @@
     .project-item{
       position:relative;display:flex;gap:18px;align-items:flex-start;
       background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--radius-md);
-      padding:20px;transition:transform .2s ease, border-color .2s ease;overflow:hidden;
+      padding:20px;transition:transform .2s ease, border-color .2s ease;overflow:visible;
     }
     .project-item:hover{border-color:var(--accent-primary);transform:translateY(-3px)}
     .project-icon{width:64px;height:64px;border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border-color);flex-shrink:0}
@@ -150,25 +149,40 @@
     }
     .project-bullet strong{color:var(--accent-primary);font-weight:700}
 
-    /* Angled badge on the right */
+    /* Angled badge: bigger, more angled, never overlaps content on desktop */
     .project-badge{
-      position:absolute;right:-10px;top:12px;
-      transform:rotate(-6deg);
-      background:linear-gradient(135deg, rgba(0,200,215,.18), rgba(0,200,215,.05));
-      border:1px dashed rgba(0,200,215,.55);
+      position:absolute;
+      right:-32px;      /* let it break out on the right */
+      top:-6px;         /* slightly higher so it clears title */
+      transform:rotate(-8deg);
+      background:linear-gradient(135deg, rgba(0,200,215,.22), rgba(0,200,215,.08));
+      border:1px dashed rgba(0,200,215,.6);
       color:#c8f8fc;
-      padding:12px 18px;
-      border-radius:12px;
-      font-weight:700;
-      font-size:1.05rem;
+      padding:14px 22px;
+      border-radius:14px;
+      font-weight:800;
+      font-size:1.15rem;   /* a bit bigger */
       letter-spacing:.02em;
       backdrop-filter:blur(2px);
       pointer-events:none;
+      z-index:2;
+      box-shadow:0 8px 24px rgba(0,0,0,.25);
     }
+
+    /* Reserve space on desktop so badge never covers text */
+    @media(min-width:840px){
+      .project-item{
+        padding-right:160px; /* space for the badge footprint */
+      }
+    }
+
     @media(max-width:640px){
-      .project-badge{position:static;transform:none;margin-top:12px;text-align:center;width:100%}
       .project-item{flex-direction:column}
       .project-bullets{grid-template-columns:1fr}
+      .project-badge{
+        position:static;transform:none;margin-top:12px;text-align:center;width:100%;
+        box-shadow:none;padding:12px 16px;font-size:1.05rem;border-radius:12px;
+      }
     }
 
     .social-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
@@ -206,7 +220,7 @@
         Influencer Marketing · Creative Strategist · Social Media Manager
       </p>
       <div class="header-cta">
-        <a href="https://calendly.com/tanagirkaya/30min" target="_blank" rel="noopener" class="btn btn-primary" data-en="Book a Free Call - Let's Discuss Your Brand Goals" data-tr="Ücretsiz Görüşme Ayır">Book a Free Call</a>
+        <a href="https://calendly.com/tanagirkaya/30min" target="_blank" rel="noopener" class="btn btn-primary" data-en="Book a Free Call" data-tr="Ücretsiz Görüşme Ayır">Book a Free Call</a>
       </div>
 
       <!-- Language Toggle -->
@@ -236,12 +250,12 @@
       <div class="section-card reveal">
         <h2 id="clients-heading" data-en="Brands I’ve Worked With" data-tr="Çalıştığım Markalar">Brands I’ve Worked With</h2>
         <div class="brands-grid">
-          <!-- TikTok Live (fills box on hover color) -->
+          <!-- TikTok Live -->
           <div class="brand-card">
             <div class="brand-logo fill"><img src="assets/logos/ttlogo.png" alt="TikTok Live logo"></div>
             <div class="brand-name">TikTok Live</div>
           </div>
-          <!-- AppNation (use anlogo.jpeg) -->
+          <!-- AppNation (anlogo.jpeg) -->
           <div class="brand-card">
             <div class="brand-logo fill"><img src="assets/logos/anlogo.jpeg" alt="AppNation logo"></div>
             <div class="brand-name">AppNation</div>
@@ -332,7 +346,7 @@
             </div>
           </div>
 
-          <!-- Angled badge on the right -->
+          <!-- Angled badge (now bigger, offset right, never overlaps content on desktop) -->
           <div class="project-badge" data-en="100,000+ followers reached on TikTok" data-tr="TikTok’ta 100.000+ takipçiye ulaşıldı">
             100,000+ followers reached on TikTok
           </div>
