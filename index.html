@@ -83,7 +83,7 @@
     h2{font-size:1.45rem;font-weight:600;margin:0 0 18px}
     p{color:var(--text-secondary);line-height:1.7;margin:0 0 14px}
 
-    /* Brands grid using uploaded images; grayscale default, color on hover */
+    /* Brands grid */
     .brands-grid{
       display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
       gap:16px;margin-top:24px;
@@ -109,8 +109,7 @@
       filter:grayscale(100%) saturate(.2) brightness(1.05);
       opacity:.95;transition:filter .25s ease, transform .25s ease;
     }
-    /* TikTok Live and AppNation fill their boxes */
-    .brand-logo.fill img{object-fit:cover}
+    .brand-logo.fill img{object-fit:cover} /* TikTok Live & AppNation fill */
     .brand-card:hover .brand-logo img{filter:none;transform:translateY(-1px)}
     .brand-name{font-size:1rem;font-weight:600;color:var(--text-primary);margin:0}
 
@@ -152,8 +151,8 @@
     /* Angled badge: bigger, more angled, never overlaps content on desktop */
     .project-badge{
       position:absolute;
-      right:-32px;      /* let it break out on the right */
-      top:-6px;         /* slightly higher so it clears title */
+      right:-32px;
+      top:-6px;
       transform:rotate(-8deg);
       background:linear-gradient(135deg, rgba(0,200,215,.22), rgba(0,200,215,.08));
       border:1px dashed rgba(0,200,215,.6);
@@ -161,21 +160,16 @@
       padding:14px 22px;
       border-radius:14px;
       font-weight:800;
-      font-size:1.15rem;   /* a bit bigger */
+      font-size:1.15rem;
       letter-spacing:.02em;
       backdrop-filter:blur(2px);
       pointer-events:none;
       z-index:2;
       box-shadow:0 8px 24px rgba(0,0,0,.25);
     }
-
-    /* Reserve space on desktop so badge never covers text */
     @media(min-width:840px){
-      .project-item{
-        padding-right:160px; /* space for the badge footprint */
-      }
+      .project-item{ padding-right:160px; } /* space for badge */
     }
-
     @media(max-width:640px){
       .project-item{flex-direction:column}
       .project-bullets{grid-template-columns:1fr}
@@ -220,7 +214,13 @@
         Influencer Marketing · Creative Strategist · Social Media Manager
       </p>
       <div class="header-cta">
-        <a href="https://calendly.com/tanagirkaya/30min" target="_blank" rel="noopener" class="btn btn-primary" data-en="Book a Free Call" data-tr="Ücretsiz Görüşme Ayır">Book a Free Call</a>
+        <a
+          href="https://calendly.com/tanagirkaya/30min"
+          target="_blank" rel="noopener"
+          class="btn btn-primary"
+          data-en="Book a FREE Call - Let’s Discuss Your Brand Needs"
+          data-tr="ÜCRETSİZ İlk Görüşme → Markan ve Hesapların için Neler Yapılabileceğini Konuşalım."
+        >Book a FREE Call - Let’s Discuss Your Brand Needs</a>
       </div>
 
       <!-- Language Toggle -->
@@ -234,12 +234,16 @@
     <section id="about" aria-labelledby="about-heading">
       <div class="section-card reveal">
         <h2 id="about-heading" data-en="About" data-tr="Hakkımda">About</h2>
-        <p data-en="I help brands grow their presence on social media through creator-driven campaigns and viral UGC strategies. By combining trend analysis with data-driven systems, I focus not just on views but on direct user conversions."
-           data-tr="Markaların sosyal medya varlığını yaratıcı iş birlikleri ve viral UGC stratejileriyle büyütüyorum. Trend analizlerini veri odaklı sistemlerle birleştirerek yalnızca izlenmeye değil, doğrudan kullanıcı dönüşümüne odaklanıyorum.">
+        <p
+          data-en="I help brands grow their presence on social media through creator-driven campaigns and viral UGC strategies. By combining trend analysis with data-driven systems, I focus not just on views but on direct user conversions."
+          data-tr="Markaların sosyal medya varlığını yönetiyor, creator iş birlikleriyle viral UGC kampanyaları tasarlıyorum. Trend analizlerine dayanan stratejilerle yalnızca izlenme değil, doğrudan kullanıcı dönüşümüne odaklanıyorum."
+        >
           I help brands grow their presence on social media through creator-driven campaigns and viral UGC strategies. By combining trend analysis with data-driven systems, I focus not just on views but on direct user conversions.
         </p>
-        <p data-en="I’ve scaled dozens of apps and brands, building social ecosystems that generated millions of views, engagements, and loyal users."
-           data-tr="Şimdiye kadar onlarca uygulama ve markayı ölçeklendirerek milyonlarca izlenme, etkileşim ve sadık kullanıcıdan oluşan sosyal ekosistemler kurdum.">
+        <p
+          data-en="I’ve scaled dozens of apps and brands, building social ecosystems that generated millions of views, engagements, and loyal users."
+          data-tr="Şimdiye kadar onlarca uygulama ve markanın sosyal medya varlığını büyütüp, doğru içerik sistemleriyle milyonlarca izlenme, beğeni ve kullanıcı sayısına ulaşmasını sağladım."
+        >
           I’ve scaled dozens of apps and brands, building social ecosystems that generated millions of views, engagements, and loyal users.
         </p>
       </div>
@@ -270,10 +274,10 @@
             <div class="brand-logo"><img src="assets/logos/spwlogo.jpg" alt="SpeakWell logo"></div>
             <div class="brand-name">SpeakWell</div>
           </div>
-          <!-- Genie AI -->
+          <!-- Genie - Chatbot AI -->
           <div class="brand-card">
-            <div class="brand-logo"><img src="assets/logos/gnlogo.png" alt="Genie AI logo"></div>
-            <div class="brand-name">Genie AI</div>
+            <div class="brand-logo"><img src="assets/logos/gnlogo.png" alt="Genie - Chatbot AI logo"></div>
+            <div class="brand-name">Genie - Chatbot AI</div>
           </div>
         </div>
       </div>
@@ -283,9 +287,11 @@
     <section id="now" aria-labelledby="now-heading">
       <div class="section-card reveal">
         <h2 id="now-heading" data-en="Now" data-tr="Şu An">Now</h2>
-        <p data-en="Instead of the traditional agency model, I design social media strategies that leverage creator content to build trust, growth, and community for brands."
-           data-tr="Klasik ajans modelinden farklı olarak, markalar için güven, büyüme ve topluluk oluşturan yaratıcı içerik odaklı sosyal medya stratejileri tasarlıyorum.">
-          Instead of the traditional agency model, I design social media strategies that leverage creator content to build trust, growth, and community for brands.
+        <p
+          data-en="Instead of the traditional agency model, I design social media strategies that leverage creator content to build trust, growth, and community for brands. Key to viral growth: Doubling down on working formats."
+          data-tr="Ajans yapısından farklı olarak, markaların creator içerikleri üzerinden büyümesini ve güvenilir bir topluluk oluşturması için sosyal medya içerik stratejileri tasarlıyorum."
+        >
+          Instead of the traditional agency model, I design social media strategies that leverage creator content to build trust, growth, and community for brands. Key to viral growth: Doubling down on working formats.
         </p>
       </div>
     </section>
@@ -297,10 +303,10 @@
         <div class="stats-grid">
           <div class="stat-item"><span class="stat-number" data-target="800" data-suffix="M+">0</span><div class="stat-label" data-en="Reach / Views" data-tr="Erişim / İzlenme">Reach / Views</div></div>
           <div class="stat-item"><span class="stat-number" data-target="15" data-suffix="M+">0</span><div class="stat-label" data-en="Engagements" data-tr="Etkileşim">Engagements</div></div>
-          <div class="stat-item"><span class="stat-number" data-target="20" data-suffix="+">0</span><div class="stat-label" data-en="Brands Managed" data-tr="Yönetilen Markalar">Brands Managed</div></div>
-          <div class="stat-item"><span class="stat-number" data-target="100" data-suffix="+">0</span><div class="stat-label" data-en="Channels Managed" data-tr="Yönetilen Kanallar">Channels Managed</div></div>
-          <div class="stat-item"><span class="stat-number" data-target="2000000">0</span><div class="stat-label" data-en="Watch Hours" data-tr="İzlenme Saatleri">Watch Hours</div></div>
-          <div class="stat-item"><span class="stat-number" data-target="7" data-suffix="+">0</span><div class="stat-label" data-en="Platforms" data-tr="Platformlar">Platforms</div></div>
+          <div class="stat-item"><span class="stat-number" data-target="20" data-suffix="+">0</span><div class="stat-label" data-en="Brands Managed" data-tr="Yönetilen Marka Sayısı">Brands Managed</div></div>
+          <div class="stat-item"><span class="stat-number" data-target="100" data-suffix="+">0</span><div class="stat-label" data-en="Channels Managed" data-tr="Yönetilen Kanal Sayısı">Channels Managed</div></div>
+          <div class="stat-item"><span class="stat-number" data-target="2000000">0</span><div class="stat-label" data-en="Watch Hours" data-tr="Toplam İzlenme Saati">Watch Hours</div></div>
+          <div class="stat-item"><span class="stat-number" data-target="7" data-suffix="+">0</span><div class="stat-label" data-en="Platforms" data-tr="Platform">Platforms</div></div>
         </div>
       </div>
     </section>
@@ -308,17 +314,19 @@
     <!-- Lead Capture -->
     <section id="lead-capture" aria-labelledby="lead-heading">
       <div class="section-card reveal">
-        <h2 id="lead-heading" data-en="I’ll Contact You" data-tr="Ben Sizinle İletişime Geçeceğim">I’ll Contact You</h2>
-        <p data-en="Not sure what content your brand needs? Leave your email — I’ll reach out to understand your goals and schedule a FREE discovery call for you."
-           data-tr="Markanız için hangi içeriklere ihtiyaç duyduğunuzdan emin değil misiniz? E-postanızı bırakın — hedeflerinizi anlamak için ben ulaşayım ve sizin için ÜCRETSİZ bir keşif görüşmesi planlayayım.">
-          Not sure what content your brand needs? Leave your email — I’ll reach out to understand your goals and schedule a FREE discovery call for you.
+        <h2 id="lead-heading" data-en="I’ll Contact You" data-tr="Ben Sizinle İletişime Geçeyim">I’ll Contact You</h2>
+        <p
+          data-en="Not sure what content your brand needs? Leave your email — I’ll reach out to understand your goals."
+          data-tr="Markanız için hangi içeriklere ihtiyacınız olduğundan emin değil misiniz? Hiç uğraşmayın; e-postanızı bırakın, ben size ulaşayım. Hedeflerinizi birlikte netleştirelim."
+        >
+          Not sure what content your brand needs? Leave your email — I’ll reach out to understand your goals.
         </p>
         <form action="https://formsubmit.co/agirkayatan@gmail.com" method="POST" class="email-capture">
           <input type="hidden" name="_subject" value="New Portfolio Lead">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_next" value="https://tanagirkaya.github.io#success">
           <input type="email" name="email" placeholder="your@email.com" required aria-label="Your email address">
-          <button type="submit" class="btn btn-primary" data-en="Send My Email" data-tr="E-postamı Gönder">Send My Email</button>
+          <button type="submit" class="btn btn-primary" data-en="Send" data-tr="Gönder">Send</button>
         </form>
       </div>
     </section>
@@ -326,7 +334,7 @@
     <!-- Featured Project -->
     <section id="projects" aria-labelledby="projects-heading">
       <div class="section-card reveal">
-        <h2 id="projects-heading" data-en="Featured Case Study" data-tr="Öne Çıkan Vaka Çalışması">Featured Case Study</h2>
+        <h2 id="projects-heading" data-en="Featured Case Study" data-tr="Başarı Hikayeleri">Featured Case Study</h2>
         <div class="project-item">
           <div class="project-icon">
             <img src="https://i.ibb.co/3YhrRVc1/Tiktok-Profile-Picture.jpg" alt="Fotorama AI project logo" loading="lazy">
@@ -336,7 +344,7 @@
             <div class="project-bullets">
               <div class="project-bullet" data-en="<strong>430M+</strong> impressions" data-tr="<strong>430M+</strong> gösterim"><strong>430M+</strong> impressions</div>
               <div class="project-bullet" data-en="<strong>420%</strong> follower growth" data-tr="<strong>%420</strong> takipçi büyümesi"><strong>420%</strong> follower growth</div>
-              <div class="project-bullet" data-en="<strong>2,500+</strong> shares" data-tr="<strong>2.500+</strong> paylaşım"><strong>2,500+</strong> shares</div>
+              <div class="project-bullet" data-en="<strong>2,500+</strong> posts" data-tr="<strong>2.500+</strong> paylaşım"><strong>2,500+</strong> posts</div>
               <div class="project-bullet" data-en="<strong>5+</strong> social platforms" data-tr="<strong>5+</strong> sosyal platform"><strong>5+</strong> social platforms</div>
             </div>
             <div class="social-buttons" aria-label="Fotorama links">
@@ -346,7 +354,7 @@
             </div>
           </div>
 
-          <!-- Angled badge (now bigger, offset right, never overlaps content on desktop) -->
+          <!-- Angled badge -->
           <div class="project-badge" data-en="100,000+ followers reached on TikTok" data-tr="TikTok’ta 100.000+ takipçiye ulaşıldı">
             100,000+ followers reached on TikTok
           </div>
@@ -376,14 +384,16 @@
     <!-- Contact -->
     <section id="contact" aria-labelledby="contact-heading">
       <div class="section-card reveal">
-        <h2 id="contact-heading" data-en="Ready to Go Viral?" data-tr="Viral Büyümeye Hazır mısınız?">Ready to Go Viral?</h2>
-        <p data-en="Want to make your brand go viral? Are you not sure how to create content for your brand? Let’s talk for FREE on a discovery call."
-           data-tr="Markanızın viral büyümesini mi istiyorsunuz? İçerik üretimi konusunda emin değil misiniz? ÜCRETSİZ keşif görüşmesinde konuşalım.">
-          Want to make your brand go viral? Are you not sure how to create content for your brand? Let’s talk for FREE on a discovery call.
+        <h2 id="contact-heading" data-en="Ready to Go Viral?" data-tr="Viral Olmaya Hazır Mısınız?">Ready to Go Viral?</h2>
+        <p
+          data-en="Want to make your brand go viral? Are you not sure how to create content for your accounts? Let’s talk for FREE on a discovery call."
+          data-tr="Markanız için sosyal medya hesapları açmak ve büyümesini mi istiyorsunuz? İçerik üretimi konusunda emin değil misiniz? ÜCRETSİZ hedef görüşmesinde istediklerinizi netleştirelim."
+        >
+          Want to make your brand go viral? Are you not sure how to create content for your accounts? Let’s talk for FREE on a discovery call.
         </p>
         <div class="contact-actions">
           <a href="mailto:agirkayatan@gmail.com" class="btn btn-primary" data-en="Send Email" data-tr="E-posta Gönder">Send Email</a>
-          <a href="https://calendly.com/tanagirkaya/30min" target="_blank" rel="noopener" class="btn" data-en="Book a Free Call" data-tr="Ücretsiz Görüşme Ayır">Book a Free Call</a>
+          <a href="https://calendly.com/tanagirkaya/30min" target="_blank" rel="noopener" class="btn" data-en="Book a Free Call" data-tr="Görüşme için Yer Ayır">Book a Free Call</a>
         </div>
       </div>
     </section>
@@ -472,7 +482,7 @@
     (function(){
       if (window.location.hash === '#success') {
         setTimeout(()=>{
-          alert( document.documentElement.lang==='tr' ? "Teşekkürler! Yakında iletişime geçeceğim." : "Thank you! I'll be in touch soon." );
+          alert( document.documentElement.lang==='tr' ? "Teşekkürler! Çok yakında sizlere geri döneceğim." : "Thank you! I'll be in touch soon." );
           window.location.hash = '';
         }, 400);
       }
