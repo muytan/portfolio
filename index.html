@@ -189,6 +189,7 @@
     .email-capture input{padding:10px 14px;border-radius:12px;border:1px solid var(--border-color);background:var(--bg-secondary);color:var(--text-primary);min-width:240px}
     .email-capture input:focus{outline:2px solid var(--accent-primary);outline-offset:2px;border-color:var(--accent-primary)}
     .email-capture input::placeholder{color:var(--text-muted)}
+    .email-capture .notice{font-size:.85rem;color:var(--text-muted);margin-top:10px;text-align:center}
 
     /* Accessibility */
     .visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
@@ -249,39 +250,65 @@
       </div>
     </section>
 
-    <!-- Brands -->
-    <section id="clients" aria-labelledby="clients-heading">
-      <div class="section-card reveal">
-        <h2 id="clients-heading" data-en="Brands I’ve Worked With" data-tr="Çalıştığım Markalar">Brands I’ve Worked With</h2>
-        <div class="brands-grid">
-          <!-- TikTok Live -->
-          <div class="brand-card">
-            <div class="brand-logo fill"><img src="assets/logos/ttlogo.png" alt="TikTok Live logo"></div>
-            <div class="brand-name">TikTok Live</div>
-          </div>
-          <!-- AppNation (anlogo.jpeg) -->
-          <div class="brand-card">
-            <div class="brand-logo fill"><img src="assets/logos/anlogo.jpeg" alt="AppNation logo"></div>
-            <div class="brand-name">AppNation</div>
-          </div>
-          <!-- Fotorama -->
-          <div class="brand-card">
-            <div class="brand-logo"><img src="assets/logos/ftrlogo.jpeg" alt="Fotorama AI logo"></div>
-            <div class="brand-name">Fotorama AI</div>
-          </div>
-          <!-- SpeakWell -->
-          <div class="brand-card">
-            <div class="brand-logo"><img src="assets/logos/spwlogo.jpg" alt="SpeakWell logo"></div>
-            <div class="brand-name">SpeakWell</div>
-          </div>
-          <!-- Genie - Chatbot AI -->
-          <div class="brand-card">
-            <div class="brand-logo"><img src="assets/logos/gnlogo.png" alt="Genie - Chatbot AI logo"></div>
-            <div class="brand-name">Genie - Chatbot AI</div>
-          </div>
+  <!-- Brands -->
+<section id="clients" aria-labelledby="clients-heading">
+  <div class="section-card reveal">
+    <h2 id="clients-heading" data-en="Brands I’ve Worked With" data-tr="Çalıştığım Markalar">
+      Brands I’ve Worked With
+    </h2>
+    <div class="brands-grid">
+      
+      <!-- TikTok Live -->
+      <div class="brand-card">
+        <div class="brand-logo fill">
+          <img src="assets/logos/ttlogo.png" alt="TikTok Live logo">
         </div>
+        <div class="brand-name">TikTok Live</div>
       </div>
-    </section>
+
+      <!-- AppNation -->
+      <div class="brand-card">
+        <div class="brand-logo fill">
+          <img src="assets/logos/anlogo.jpeg" alt="AppNation logo">
+        </div>
+        <div class="brand-name">AppNation</div>
+      </div>
+
+      <!-- Fotorama AI -->
+      <div class="brand-card">
+        <div class="brand-logo">
+          <img src="assets/logos/ftrlogo.jpeg" alt="Fotorama AI logo">
+        </div>
+        <div class="brand-name">Fotorama AI</div>
+      </div>
+
+      <!-- SpeakWell -->
+      <div class="brand-card">
+        <div class="brand-logo">
+          <img src="assets/logos/spwlogo.jpg" alt="SpeakWell logo">
+        </div>
+        <div class="brand-name">SpeakWell</div>
+      </div>
+
+      <!-- Genie - Chatbot AI -->
+      <div class="brand-card">
+        <div class="brand-logo">
+          <img src="assets/logos/gnlogo.png" alt="Genie - Chatbot AI logo">
+        </div>
+        <div class="brand-name">Genie - Chatbot AI</div>
+      </div>
+
+      <!-- Someka -->
+      <div class="brand-card">
+        <div class="brand-logo">
+          <img src="assets/logos/somekalogo.png" alt="Someka logo">
+        </div>
+        <div class="brand-name">Someka</div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
     <!-- Now -->
     <section id="now" aria-labelledby="now-heading">
@@ -321,13 +348,20 @@
         >
           Not sure what content your brand needs? Leave your email — I’ll reach out to understand your goals.
         </p>
-        <form action="https://formsubmit.co/agirkayatan@gmail.com" method="POST" class="email-capture">
-          <input type="hidden" name="_subject" value="New Portfolio Lead">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_next" value="https://tanagirkaya.github.io#success">
+
+        <!-- Flexible form: works now via mailto; supports backend endpoint when added -->
+        <form id="lead-form"
+              action="mailto:agirkayatan@gmail.com"
+              method="POST"
+              enctype="text/plain"
+              class="email-capture"
+              data-endpoint=""> https://formspree.io/f/mvgbvbpv
           <input type="email" name="email" placeholder="your@email.com" required aria-label="Your email address">
           <button type="submit" class="btn btn-primary" data-en="Send" data-tr="Gönder">Send</button>
         </form>
+        <div class="notice" data-en="Tip: You can also book a free call above." data-tr="İpucu: Ücretsiz görüşmeyi yukarıdan da ayarlayabilirsiniz.">
+          Tip: You can also book a free call above.
+        </div>
       </div>
     </section>
 
@@ -412,7 +446,7 @@
     // Default English
     setLanguage('en');
 
-    // --- Section reveal on scroll (accessible) ---
+    // --- Section reveal on scroll ---
     (function(){
       const cards = document.querySelectorAll('.section-card');
       if ('IntersectionObserver' in window) {
@@ -454,7 +488,7 @@
       document.querySelectorAll('#stats .section-card').forEach(card=>obs.observe(card));
     })();
 
-    // --- Micro loading state for external links ---
+    // --- External links micro loading ---
     (function(){
       document.querySelectorAll('a[target="_blank"]').forEach(link=>{
         link.addEventListener('click',function(){
@@ -465,20 +499,49 @@
       });
     })();
 
-    // --- Lead form UX ---
+    // --- Lead form handler: mailto fallback + optional backend endpoint ---
     (function(){
-      const form = document.querySelector('.email-capture');
+      const form = document.getElementById('lead-form');
       if (!form) return;
-      form.addEventListener('submit', function(){
+
+      const endpoint = form.getAttribute('data-endpoint'); // paste endpoint URL here when you have it
+      form.addEventListener('submit', async function(e){
         const btn = this.querySelector('button[type="submit"]');
-        if (!btn) return;
-        const old = btn.textContent;
-        btn.disabled = true; btn.textContent = (document.documentElement.lang==='tr' ? 'Gönderiliyor...' : 'Sending...');
-        setTimeout(()=>{ btn.disabled=false; btn.textContent = old; }, 2200);
+        const email = this.querySelector('input[name="email"]')?.value || '';
+
+        if (btn){ 
+          const old = btn.textContent;
+          btn.disabled = true; 
+          btn.textContent = (document.documentElement.lang==='tr' ? 'Gönderiliyor...' : 'Sending...');
+          setTimeout(()=>{ btn.disabled=false; btn.textContent = old; }, 2200);
+        }
+
+        // If a backend endpoint is set, use it (prevent default mailto)
+        if (endpoint && endpoint.startsWith('http')) {
+          e.preventDefault();
+          try {
+            const res = await fetch(endpoint, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+              body: JSON.stringify({ email })
+            });
+            if (res.ok) {
+              alert(document.documentElement.lang==='tr' ? 'Teşekkürler! Çok yakında sizlere geri döneceğim.' : "Thank you! I'll be in touch soon.");
+              this.reset();
+            } else {
+              // fallback to mailto if backend failed
+              window.location.href = `mailto:agirkayatan@gmail.com?subject=New%20Portfolio%20Lead&body=Email:%20${encodeURIComponent(email)}`;
+            }
+          } catch (err) {
+            // network error -> fallback to mailto
+            window.location.href = `mailto:agirkayatan@gmail.com?subject=New%20Portfolio%20Lead&body=Email:%20${encodeURIComponent(email)}`;
+          }
+        }
+        // else: no endpoint set -> let mailto action proceed normally
       });
     })();
 
-    // --- #success hash feedback ---
+    // --- #success hash feedback (unused with mailto but kept if you switch providers) ---
     (function(){
       if (window.location.hash === '#success') {
         setTimeout(()=>{
