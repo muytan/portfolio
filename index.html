@@ -338,32 +338,34 @@
       </div>
     </section>
 
-    <!-- Lead Capture -->
-    <section id="lead-capture" aria-labelledby="lead-heading">
-      <div class="section-card reveal">
-        <h2 id="lead-heading" data-en="I’ll Contact You" data-tr="Ben Sizinle İletişime Geçeyim">I’ll Contact You</h2>
-        <p
-          data-en="Not sure what content your brand needs? Leave your email — I’ll reach out to understand your goals."
-          data-tr="Markanız için hangi içeriklere ihtiyacınız olduğundan emin değil misiniz? Hiç uğraşmayın; e-postanızı bırakın, ben size ulaşayım. Hedeflerinizi birlikte netleştirelim."
-        >
-          Not sure what content your brand needs? Leave your email — I’ll reach out to understand your goals.
-        </p>
+   <!-- Lead Capture -->
+<section id="lead-capture" aria-labelledby="lead-heading">
+  <div class="section-card reveal">
+    <h2 id="lead-heading" data-en="I’ll Contact You" data-tr="Ben Sizinle İletişime Geçeyim">
+      I’ll Contact You
+    </h2>
+    <p data-en="Not sure what content your brand needs? Leave your email — I’ll reach out to understand your goals." 
+       data-tr="Markanız için hangi içeriklere ihtiyacınız olduğundan emin değil misiniz? Hiç uğraşmayın; e-postanızı bırakın, ben size ulaşayım. Hedeflerinizi birlikte netleştirelim.">
+      Not sure what content your brand needs? Leave your email — I’ll reach out to understand your goals.
+    </p>
 
-        <!-- Flexible form: works now via mailto; supports backend endpoint when added -->
-        <form id="lead-form"
-              action="mailto:agirkayatan@gmail.com"
-              method="POST"
-              enctype="text/plain"
-              class="email-capture"
-              data-endpoint=""> https://formspree.io/f/mvgbvbpv
-          <input type="email" name="email" placeholder="your@email.com" required aria-label="Your email address">
-          <button type="submit" class="btn btn-primary" data-en="Send" data-tr="Gönder">Send</button>
-        </form>
-        <div class="notice" data-en="Tip: You can also book a free call above." data-tr="İpucu: Ücretsiz görüşmeyi yukarıdan da ayarlayabilirsiniz.">
-          Tip: You can also book a free call above.
-        </div>
-      </div>
-    </section>
+    <form action="https://formspree.io/f/mvgbvbpv" method="POST" class="email-capture">
+      <input 
+        type="email" 
+        name="email" 
+        placeholder="your@email.com" 
+        required 
+        aria-label="Your email address">
+      <button type="submit" class="btn btn-primary" data-en="Send" data-tr="Gönder">Send</button>
+    </form>
+
+    <p style="margin-top:12px; font-size:0.85rem; color:var(--text-muted);" 
+       data-en="Tip: You can also book a free call above." 
+       data-tr="Yukarıdan ücretsiz görüşme de ayarlayabilirsiniz.">
+       Tip: You can also book a free call above.
+    </p>
+  </div>
+</section>
 
     <!-- Featured Project -->
     <section id="projects" aria-labelledby="projects-heading">
