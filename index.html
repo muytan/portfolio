@@ -109,11 +109,11 @@
       filter:grayscale(100%) saturate(.2) brightness(1.05);
       opacity:.95;transition:filter .25s ease, transform .25s ease;
     }
-    .brand-logo.fill img{object-fit:cover} /* TikTok Live & AppNation fill */
+    .brand-logo.fill img{object-fit:cover}
     .brand-card:hover .brand-logo img{filter:none;transform:translateY(-1px)}
     .brand-name{font-size:1rem;font-weight:600;color:var(--text-primary);margin:0}
 
-    /* Stats (2025) symmetrical grid 3×2 on desktop */
+    /* Stats (2025) symmetrical grid */
     .stats-grid{display:grid;gap:18px;grid-template-columns:1fr 1fr}
     @media(min-width:768px){ .stats-grid{grid-template-columns:repeat(3,1fr)} }
     .stat-item{
@@ -126,7 +126,7 @@
     .stat-number{font-size:1.9rem;font-weight:700;color:var(--accent-primary);line-height:1}
     .stat-label{font-size:.9rem;color:var(--text-muted);margin-top:6px;text-transform:uppercase;letter-spacing:.05em}
 
-    /* Project (Fotorama) with angled badge */
+    /* Project (Fotorama) with angled badges */
     .project-item{
       position:relative;display:flex;gap:18px;align-items:flex-start;
       background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:var(--radius-md);
@@ -138,7 +138,6 @@
     .project-content h3{margin:0 0 10px;font-size:1.2rem}
     .project-year{font-size:.88rem;color:var(--text-muted);font-style:italic;margin-left:6px}
 
-    /* Bullet grid */
     .project-bullets{
       display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:8px 0 4px;
     }
@@ -148,7 +147,7 @@
     }
     .project-bullet strong{color:var(--accent-primary);font-weight:700}
 
-    /* Angled badge: bigger, more angled, never overlaps content on desktop */
+    /* Followers badge (angled, glass) */
     .project-badge{
       position:absolute;
       right:-32px;
@@ -162,14 +161,51 @@
       font-weight:800;
       font-size:1.15rem;
       letter-spacing:.02em;
-      backdrop-filter:blur(2px);
+      backdrop-filter:blur(4px);
+      -webkit-backdrop-filter:blur(4px);
       pointer-events:none;
       z-index:2;
       box-shadow:0 8px 24px rgba(0,0,0,.25);
+      display:flex;align-items:center;gap:10px;
     }
+    .badge-icon{display:inline-flex;align-items:center;justify-content:center}
+    .badge-icon svg{width:20px;height:20px;display:block}
+    .pulse-text{display:inline-block;animation:pulseScale 1.8s ease-in-out infinite;will-change:transform}
+
+    /* Clickable views badge (glass, #fe2858) */
+    .project-badge--views {
+      position: absolute;
+      right: -26px;
+      bottom: -14px;
+      transform: rotate(6deg);
+      display: inline-flex;
+      align-items:center;
+      gap:10px;
+      text-decoration: none;
+      background: linear-gradient(135deg, rgba(254,40,88,.22), rgba(254,40,88,.10));
+      border: 1px dashed rgba(254,40,88,.65);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: .02em;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+      z-index: 2;
+      cursor: pointer;
+    }
+    .project-badge--views:hover { filter: brightness(1.06); transform: rotate(6deg) translateY(-2px); }
+
+    /* underline only the phrase "single video" / "yalnızca bir video" */
+    .badge-underline { text-decoration: underline; text-underline-offset: 2px; }
+
+    /* Space for badges on desktop */
     @media(min-width:840px){
-      .project-item{ padding-right:160px; } /* space for badge */
+      .project-item{ padding-right:180px; padding-bottom:72px; }
     }
+    /* Mobile: badges become full-width pills under content */
     @media(max-width:640px){
       .project-item{flex-direction:column}
       .project-bullets{grid-template-columns:1fr}
@@ -177,8 +213,13 @@
         position:static;transform:none;margin-top:12px;text-align:center;width:100%;
         box-shadow:none;padding:12px 16px;font-size:1.05rem;border-radius:12px;
       }
+      .project-badge--views{
+        position:static;transform:none;margin-top:10px;width:100%;text-align:center;
+        box-shadow:none;font-size:1rem;border-radius:12px;
+      }
     }
 
+    /* Tools / Contact / Forms */
     .social-buttons{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
     .tools-grid{display:flex;flex-wrap:wrap;gap:10px}
     .tool-badge{padding:8px 12px;border:1px solid var(--border-color);border-radius:999px;background:var(--bg-secondary);font-size:.9rem;color:var(--text-secondary)}
@@ -195,11 +236,19 @@
     .visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
     .btn:focus, .lang-toggle button:focus{outline:2px solid var(--accent-primary);outline-offset:2px}
 
+    /* Pulse keyframes (more visible) */
+    @keyframes pulseScale{
+      0%{ transform:scale(1) }
+      50%{ transform:scale(1.08) }
+      100%{ transform:scale(1) }
+    }
+
     /* Motion prefs */
     @media (prefers-reduced-motion: reduce){
       *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
       .section-card{opacity:1;transform:none}
       .project-badge{transform:none}
+      .pulse-text{animation:none}
     }
   </style>
 </head>
@@ -250,65 +299,58 @@
       </div>
     </section>
 
-  <!-- Brands -->
-<section id="clients" aria-labelledby="clients-heading">
-  <div class="section-card reveal">
-    <h2 id="clients-heading" data-en="Brands I’ve Worked With" data-tr="Çalıştığım Markalar">
-      Brands I’ve Worked With
-    </h2>
-    <div class="brands-grid">
-      
-      <!-- TikTok Live -->
-      <div class="brand-card">
-        <div class="brand-logo fill">
-          <img src="assets/logos/ttlogo.png" alt="TikTok Live logo">
+    <!-- Brands -->
+    <section id="clients" aria-labelledby="clients-heading">
+      <div class="section-card reveal">
+        <h2 id="clients-heading" data-en="Brands I’ve Worked With" data-tr="Çalıştığım Markalar">
+          Brands I’ve Worked With
+        </h2>
+        <div class="brands-grid">
+          <!-- TikTok Live -->
+          <div class="brand-card">
+            <div class="brand-logo fill">
+              <img src="assets/logos/ttlogo.png" alt="TikTok Live logo">
+            </div>
+            <div class="brand-name">TikTok Live</div>
+          </div>
+          <!-- AppNation -->
+          <div class="brand-card">
+            <div class="brand-logo fill">
+              <img src="assets/logos/anlogo.jpeg" alt="AppNation logo">
+            </div>
+            <div class="brand-name">AppNation</div>
+          </div>
+          <!-- Fotorama AI -->
+          <div class="brand-card">
+            <div class="brand-logo">
+              <img src="assets/logos/ftrlogo.jpeg" alt="Fotorama AI logo">
+            </div>
+            <div class="brand-name">Fotorama AI</div>
+          </div>
+          <!-- SpeakWell -->
+          <div class="brand-card">
+            <div class="brand-logo">
+              <img src="assets/logos/spwlogo.jpg" alt="SpeakWell logo">
+            </div>
+            <div class="brand-name">SpeakWell</div>
+          </div>
+          <!-- Genie - Chatbot AI -->
+          <div class="brand-card">
+            <div class="brand-logo">
+              <img src="assets/logos/gnlogo.png" alt="Genie - Chatbot AI logo">
+            </div>
+            <div class="brand-name">Genie - Chatbot AI</div>
+          </div>
+          <!-- Someka -->
+          <div class="brand-card">
+            <div class="brand-logo">
+              <img src="assets/logos/somekalogo.png" alt="Someka logo">
+            </div>
+            <div class="brand-name">Someka</div>
+          </div>
         </div>
-        <div class="brand-name">TikTok Live</div>
       </div>
-
-      <!-- AppNation -->
-      <div class="brand-card">
-        <div class="brand-logo fill">
-          <img src="assets/logos/anlogo.jpeg" alt="AppNation logo">
-        </div>
-        <div class="brand-name">AppNation</div>
-      </div>
-
-      <!-- Fotorama AI -->
-      <div class="brand-card">
-        <div class="brand-logo">
-          <img src="assets/logos/ftrlogo.jpeg" alt="Fotorama AI logo">
-        </div>
-        <div class="brand-name">Fotorama AI</div>
-      </div>
-
-      <!-- SpeakWell -->
-      <div class="brand-card">
-        <div class="brand-logo">
-          <img src="assets/logos/spwlogo.jpg" alt="SpeakWell logo">
-        </div>
-        <div class="brand-name">SpeakWell</div>
-      </div>
-
-      <!-- Genie - Chatbot AI -->
-      <div class="brand-card">
-        <div class="brand-logo">
-          <img src="assets/logos/gnlogo.png" alt="Genie - Chatbot AI logo">
-        </div>
-        <div class="brand-name">Genie - Chatbot AI</div>
-      </div>
-
-      <!-- Someka -->
-      <div class="brand-card">
-        <div class="brand-logo">
-          <img src="assets/logos/somekalogo.png" alt="Someka logo">
-        </div>
-        <div class="brand-name">Someka</div>
-      </div>
-
-    </div>
-  </div>
-</section>
+    </section>
 
     <!-- Now -->
     <section id="now" aria-labelledby="now-heading">
@@ -338,34 +380,34 @@
       </div>
     </section>
 
-   <!-- Lead Capture -->
-<section id="lead-capture" aria-labelledby="lead-heading">
-  <div class="section-card reveal">
-    <h2 id="lead-heading" data-en="I’ll Contact You" data-tr="Ben Sizinle İletişime Geçeyim">
-      I’ll Contact You
-    </h2>
-    <p data-en="Not sure what content your brand needs? Leave your email — I’ll reach out to understand your goals." 
-       data-tr="Markanız için hangi içeriklere ihtiyacınız olduğundan emin değil misiniz? Hiç uğraşmayın; e-postanızı bırakın, ben size ulaşayım. Hedeflerinizi birlikte netleştirelim.">
-      Not sure what content your brand needs? Leave your email — I’ll reach out to understand your goals.
-    </p>
+    <!-- Lead Capture -->
+    <section id="lead-capture" aria-labelledby="lead-heading">
+      <div class="section-card reveal">
+        <h2 id="lead-heading" data-en="I’ll Contact You" data-tr="Ben Sizinle İletişime Geçeyim">
+          I’ll Contact You
+        </h2>
+        <p data-en="Not sure what content your brand needs? Leave your email — I’ll reach out to understand your goals." 
+           data-tr="Markanız için hangi içeriklere ihtiyacınız olduğundan emin değil misiniz? Hiç uğraşmayın; e-postanızı bırakın, ben size ulaşayım. Hedeflerinizi birlikte netleştirelim.">
+          Not sure what content your brand needs? Leave your email — I’ll reach out to understand your goals.
+        </p>
 
-    <form action="https://formspree.io/f/mvgbvbpv" method="POST" class="email-capture">
-      <input 
-        type="email" 
-        name="email" 
-        placeholder="your@email.com" 
-        required 
-        aria-label="Your email address">
-      <button type="submit" class="btn btn-primary" data-en="Send" data-tr="Gönder">Send</button>
-    </form>
+        <form id="lead-form" action="https://formspree.io/f/mvgbvbpv" method="POST" class="email-capture">
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="your@email.com" 
+            required 
+            aria-label="Your email address">
+          <button type="submit" class="btn btn-primary" data-en="Send" data-tr="Gönder">Send</button>
+        </form>
 
-    <p style="margin-top:12px; font-size:0.85rem; color:var(--text-muted);" 
-       data-en="Tip: You can also book a free call above." 
-       data-tr="Yukarıdan ücretsiz görüşme de ayarlayabilirsiniz.">
-       Tip: You can also book a free call above.
-    </p>
-  </div>
-</section>
+        <p style="margin-top:12px; font-size:0.85rem; color:var(--text-muted);" 
+           data-en="Tip: You can also book a free call above." 
+           data-tr="Yukarıdan ücretsiz görüşme de ayarlayabilirsiniz.">
+           Tip: You can also book a free call above.
+        </p>
+      </div>
+    </section>
 
     <!-- Featured Project -->
     <section id="projects" aria-labelledby="projects-heading">
@@ -378,6 +420,7 @@
           <div class="project-content">
             <h3>Fotorama AI <span class="project-year">2025</span></h3>
             <div class="project-bullets">
+              <!-- Updated to 265M+ views / izlenme -->
               <div class="project-bullet" data-en="<strong>265M+</strong> views" data-tr="<strong>265M+</strong> izlenme"><strong>265M+</strong> views</div>
               <div class="project-bullet" data-en="<strong>420%</strong> follower growth" data-tr="<strong>%420</strong> takipçi büyümesi"><strong>420%</strong> follower growth</div>
               <div class="project-bullet" data-en="<strong>2,500+</strong> posts" data-tr="<strong>2.500+</strong> paylaşım"><strong>2,500+</strong> posts</div>
@@ -390,10 +433,29 @@
             </div>
           </div>
 
-          <!-- Angled badge -->
+          <!-- Followers badge with pulse text + icon (glass) -->
           <div class="project-badge" data-en="100,000+ followers reached on TikTok" data-tr="TikTok’ta 100.000+ takipçiye ulaşıldı">
-            100,000+ followers reached on TikTok
+            <span class="badge-icon" aria-hidden="true">
+              <!-- Inline SVG (success/check) -->
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" opacity=".5"/><path d="M7 12l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="pulse-text">100,000+ followers reached on TikTok</span>
           </div>
+
+          <!-- Clickable views badge (glass #fe2858) with pulse text + play icon -->
+          <a class="project-badge--views"
+             href="https://www.tiktok.com/@fotorama.ai/video/7535526675908513080"
+             target="_blank"
+             rel="noopener"
+             data-en="30M+ views on a <span class='badge-underline'>single video</span>"
+             data-tr="30M+ izlenme <span class='badge-underline'>yalnızca bir video</span>"
+             aria-label="Watch the TikTok video: 30M+ views on a single video">
+            <span class="badge-icon" aria-hidden="true">
+              <!-- Inline SVG (play circle) -->
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" opacity=".5"/><path d="M10 8l6 4-6 4V8z" fill="currentColor"/></svg>
+            </span>
+            <span class="pulse-text">30M+ views on a <span class="badge-underline">single video</span></span>
+          </a>
         </div>
       </div>
     </section>
@@ -468,7 +530,7 @@
       const animate = el => {
         const target = Number(el.dataset.target || el.textContent.replace(/[^0-9]/g,''));
         const suffix = el.dataset.suffix || '';
-        const duration = 1200;
+               const duration = 1200;
         const start = performance.now();
         const step = now => {
           const p = Math.min(1, (now - start) / duration);
@@ -501,56 +563,20 @@
       });
     })();
 
-    // --- Lead form handler: mailto fallback + optional backend endpoint ---
+    // --- Lead form UX helper (works with Formspree) ---
     (function(){
       const form = document.getElementById('lead-form');
       if (!form) return;
 
-      const endpoint = form.getAttribute('data-endpoint'); // paste endpoint URL here when you have it
-      form.addEventListener('submit', async function(e){
+      form.addEventListener('submit', function(){
         const btn = this.querySelector('button[type="submit"]');
-        const email = this.querySelector('input[name="email"]')?.value || '';
-
-        if (btn){ 
+        if (btn){
           const old = btn.textContent;
-          btn.disabled = true; 
+          btn.disabled = true;
           btn.textContent = (document.documentElement.lang==='tr' ? 'Gönderiliyor...' : 'Sending...');
           setTimeout(()=>{ btn.disabled=false; btn.textContent = old; }, 2200);
         }
-
-        // If a backend endpoint is set, use it (prevent default mailto)
-        if (endpoint && endpoint.startsWith('http')) {
-          e.preventDefault();
-          try {
-            const res = await fetch(endpoint, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-              body: JSON.stringify({ email })
-            });
-            if (res.ok) {
-              alert(document.documentElement.lang==='tr' ? 'Teşekkürler! Çok yakında sizlere geri döneceğim.' : "Thank you! I'll be in touch soon.");
-              this.reset();
-            } else {
-              // fallback to mailto if backend failed
-              window.location.href = `mailto:agirkayatan@gmail.com?subject=New%20Portfolio%20Lead&body=Email:%20${encodeURIComponent(email)}`;
-            }
-          } catch (err) {
-            // network error -> fallback to mailto
-            window.location.href = `mailto:agirkayatan@gmail.com?subject=New%20Portfolio%20Lead&body=Email:%20${encodeURIComponent(email)}`;
-          }
-        }
-        // else: no endpoint set -> let mailto action proceed normally
       });
-    })();
-
-    // --- #success hash feedback (unused with mailto but kept if you switch providers) ---
-    (function(){
-      if (window.location.hash === '#success') {
-        setTimeout(()=>{
-          alert( document.documentElement.lang==='tr' ? "Teşekkürler! Çok yakında sizlere geri döneceğim." : "Thank you! I'll be in touch soon." );
-          window.location.hash = '';
-        }, 400);
-      }
     })();
   </script>
 </body>
