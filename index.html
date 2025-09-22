@@ -109,11 +109,11 @@
       filter:grayscale(100%) saturate(.2) brightness(1.05);
       opacity:.95;transition:filter .25s ease, transform .25s ease;
     }
-    .brand-logo.fill img{object-fit:cover}
+    .brand-logo.fill img{object-fit:cover} /* TikTok Live & AppNation fill */
     .brand-card:hover .brand-logo img{filter:none;transform:translateY(-1px)}
     .brand-name{font-size:1rem;font-weight:600;color:var(--text-primary);margin:0}
 
-    /* Stats (2025) symmetrical grid */
+    /* Stats (2025) symmetrical grid 3×2 on desktop) */
     .stats-grid{display:grid;gap:18px;grid-template-columns:1fr 1fr}
     @media(min-width:768px){ .stats-grid{grid-template-columns:repeat(3,1fr)} }
     .stat-item{
@@ -138,6 +138,7 @@
     .project-content h3{margin:0 0 10px;font-size:1.2rem}
     .project-year{font-size:.88rem;color:var(--text-muted);font-style:italic;margin-left:6px}
 
+    /* Bullets */
     .project-bullets{
       display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:8px 0 4px;
     }
@@ -201,11 +202,25 @@
     /* underline only the phrase "single video" / "yalnızca bir video" */
     .badge-underline { text-decoration: underline; text-underline-offset: 2px; }
 
-    /* Space for badges on desktop */
+    /* Glass link button (Top Performing Video Examples) */
+    .glass-link{
+      margin-top:12px;
+      display:inline-flex;align-items:center;gap:10px;
+      background:linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+      border:1px dashed rgba(255,255,255,.35);
+      color:#fff;text-decoration:none;
+      padding:10px 14px;border-radius:12px;
+      backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+      transition:transform .2s ease, filter .2s ease, border-color .2s ease;
+    }
+    .glass-link:hover{ transform:translateY(-2px); filter:brightness(1.05); border-color:rgba(255,255,255,.6); }
+    .glass-link svg{width:18px;height:18px;display:block}
+
+    /* Desktop spacing for badges */
     @media(min-width:840px){
       .project-item{ padding-right:180px; padding-bottom:72px; }
     }
-    /* Mobile: badges become full-width pills under content */
+    /* Mobile adjustments */
     @media(max-width:640px){
       .project-item{flex-direction:column}
       .project-bullets{grid-template-columns:1fr}
@@ -217,6 +232,7 @@
         position:static;transform:none;margin-top:10px;width:100%;text-align:center;
         box-shadow:none;font-size:1rem;border-radius:12px;
       }
+      .glass-link{ width:100%; justify-content:center; }
     }
 
     /* Tools / Contact / Forms */
@@ -234,7 +250,7 @@
 
     /* Accessibility */
     .visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
-    .btn:focus, .lang-toggle button:focus{outline:2px solid var(--accent-primary);outline-offset:2px}
+    .btn:focus, .lang-toggle button:focus, .glass-link:focus{outline:2px solid var(--accent-primary);outline-offset:2px;border-radius:12px}
 
     /* Pulse keyframes (more visible) */
     @keyframes pulseScale{
@@ -426,6 +442,21 @@
               <div class="project-bullet" data-en="<strong>2,500+</strong> posts" data-tr="<strong>2.500+</strong> paylaşım"><strong>2,500+</strong> posts</div>
               <div class="project-bullet" data-en="<strong>5+</strong> social platforms" data-tr="<strong>5+</strong> sosyal platform"><strong>5+</strong> social platforms</div>
             </div>
+
+            <!-- Glass link: Top Performing Video Examples -->
+            <a class="glass-link"
+               href="https://cutt.ly/tan-portfolio"
+               target="_blank" rel="noopener"
+               data-en="Top Performing Video Examples"
+               data-tr="En İyi Performanslı Video Örnekleri"
+               aria-label="Open: Top Performing Video Examples">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M8 5h8a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3z" stroke="currentColor" stroke-width="2"/>
+                <path d="M10 9l6 4-6 4V9z" fill="currentColor"/>
+              </svg>
+              <span>Top Performing Video Examples</span>
+            </a>
+
             <div class="social-buttons" aria-label="Fotorama links">
               <a href="https://www.tiktok.com/@fotorama.ai" target="_blank" rel="noopener" class="btn">TikTok</a>
               <a href="https://www.youtube.com/@FotoramaAIPhotoGenerator" target="_blank" rel="noopener" class="btn">YouTube</a>
@@ -530,7 +561,7 @@
       const animate = el => {
         const target = Number(el.dataset.target || el.textContent.replace(/[^0-9]/g,''));
         const suffix = el.dataset.suffix || '';
-               const duration = 1200;
+        const duration = 1200;
         const start = performance.now();
         const step = now => {
           const p = Math.min(1, (now - start) / duration);
